@@ -15,5 +15,5 @@ function updateData(currentObject, newDataObject) {
     return currentObject.hasOwnProperty(key); 
   }
   
-  module.exports = updateData;
+  export default updateData;
   

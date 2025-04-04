@@ -25,5 +25,5 @@ function maskify(string) {
     return string.slice(-4);
   }
   
-  module.exports = maskify;
+  export default maskify;
   
