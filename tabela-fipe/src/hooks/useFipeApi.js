@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import axios from 'axios';
 
-export const useFipeApi = () => {
+export const useFipeApi = (service) => {
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async (url) => {
+  const fetch = async (callback) => {
     setLoading(true);
     try {
-      const res = await axios.get(url);
-      return res.data;
+      return await callback();
     } catch (err) {
       console.error('Erro na API:', err);
       return null;
@@ -17,5 +15,5 @@ export const useFipeApi = () => {
     }
   };
 
-  return { fetchData, loading };
+  return { fetch, loading };
 };
