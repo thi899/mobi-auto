@@ -6,7 +6,7 @@ import { fipeService } from '../services/fipeService';
 export default function Busca() {
   return (
     <Box sx={{ backgroundColor: '#f5f5f5', minHeight: '100vh', py: 4 }}>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Typography variant="h3" align="center" sx={{ mb: 1 }}>
           Tabela FIPE
         </Typography>

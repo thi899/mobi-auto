@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMarca, setModelo, setAno, setResultado } from '../redux/slices/fipeSlice';
 import { useNavigate } from 'react-router-dom';
-import { Button, Stack, CircularProgress, Backdrop, Box, Paper } from '@mui/material';
+import { Button, CircularProgress, Backdrop, Paper, Grid } from '@mui/material';
 import { useFipeApi } from '../hooks/useFipeApi';
 import SelectField from './SelectField';
 
@@ -50,22 +50,78 @@ export default function BuscaForm({ fipeService }) {
   };
 
   return (
-    <Box sx={{ minHeight: '55vh', width: '40vw', p: 2, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <Grid
+      container
+      sx={{
+        minHeight: '100vh',
+        display: 'grid',
+        gridTemplateRows: 'repeat(4, auto)',
+        gridTemplateColumns: '1fr',
+        justifyContent: 'center',
+        alignItems: 'center',
+        p: 2,
+      }}
+    >
       <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <Paper elevation={6} sx={{ p: 4, mb: 2, maxWidth: 500, width: '100%', boxShadow: 3 }}>
-        <Stack spacing={2} sx={{ mt: 2 }}>
-          <SelectField label="Marca" value={marca} onChange={e => dispatch(setMarca(e.target.value))} options={marcas} />
-          <SelectField label="Modelo" value={modelo} onChange={e => dispatch(setModelo(e.target.value))} options={modelos} disabled={!marca} />
+
+      <Paper
+        elevation={6}
+        sx={{
+          p: 4,
+          boxShadow: 3,
+          width: { xs: '90vw', sm: '80vw', md: '50vw', lg: '40vw' },
+        }}
+      >
+        <Grid container direction="column" spacing={2}>
+          <Grid item>
+            <SelectField
+              label="Marca"
+              value={marca}
+              onChange={e => dispatch(setMarca(e.target.value))}
+              options={marcas}
+            />
+          </Grid>
+
+          <Grid item>
+            <SelectField
+              label="Modelo"
+              value={modelo}
+              onChange={e => dispatch(setModelo(e.target.value))}
+              options={modelos}
+              disabled={!marca}
+            />
+          </Grid>
+
           {modelo && (
-            <SelectField label="Ano" value={ano} onChange={e => dispatch(setAno(e.target.value))} options={anos} />
+            <Grid item>
+              <SelectField
+                label="Ano"
+                value={ano}
+                onChange={e => dispatch(setAno(e.target.value))}
+                options={anos}
+              />
+            </Grid>
           )}
-          <Button variant="contained" onClick={handleBuscar} disabled={!marca || !modelo || !ano} sx={{ mt: 2, width: '190px', alignSelf: 'center', backgroundColor: '#4a148c', '&:hover': { backgroundColor: '#310e5c' } }}>
-            Consultar preço
-          </Button>
-        </Stack>
+
+          <Grid item sx={{ textAlign: 'center' }}>
+            <Button
+              variant="contained"
+              onClick={handleBuscar}
+              disabled={!marca || !modelo || !ano}
+              sx={{
+                mt: 2,
+                width: '190px',
+                backgroundColor: '#4a148c',
+                '&:hover': { backgroundColor: '#310e5c' }
+              }}
+            >
+              Consultar preço
+            </Button>
+          </Grid>
+        </Grid>
       </Paper>
-    </Box>
+    </Grid>
   );
 }
