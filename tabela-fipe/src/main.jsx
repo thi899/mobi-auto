@@ -6,7 +6,7 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/router';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import '@fontsource/roboto';
-import theme from './theme';
+import theme from './styles/theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
