@@ -1,32 +1,26 @@
 import React from 'react';
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import BuscaForm from '../components/BuscaForm';
+import PageTitleSubtitle from '../components/PageTitleSubtitle';
 
-export default function Busca() {
-    return (
-        <Box
-            sx={{
-                backgroundColor: '#f5f5f5', 
-                minHeight: '100vh',
-                py: 4,
-            }}
-        >
-            <Container maxWidth="sm">
-                <Typography variant="h3" align="center" sx={{ mb: 1 }}>
-                    Tabela FIPE
-                </Typography>
-                <Typography
-                    variant="subtitle2"
-                    align="center"
-                    sx={{
-                        mb: 2,
-                        fontSize: '25px',
-                    }}
-                >
-                    Consulte o valor de um veículo de forma gratuita
-                </Typography>
-                <BuscaForm />
-            </Container>
-        </Box>
-    );
+export default function BuscaPage() {
+  return (
+    <Box sx={styles.pageContainer}>
+      <Container maxWidth="sm">
+        <PageTitleSubtitle
+          title="Tabela FIPE"
+          subtitle="Consulte o valor de um veículo de forma gratuita"
+        />
+        <BuscaForm />
+      </Container>
+    </Box>
+  );
 }
+
+const styles = {
+  pageContainer: {
+    backgroundColor: '#f5f5f5',
+    minHeight: '100vh',
+    py: 4,
+  },
+};
